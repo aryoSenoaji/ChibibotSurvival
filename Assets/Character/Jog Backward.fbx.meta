@@ -1,49 +1,9 @@
 fileFormatVersion: 2
-guid: 7cbe18b3f5dcefe449087484fc1066f7
+guid: 89c04d03a60d6784ab2174eca20c067f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Alis
-    second: {fileID: 2100000, guid: 91f9f25470ffea342a583e5388f2c199, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Badan
-    second: {fileID: 2100000, guid: 7baab68b2a643c845a77ecfc675efa53, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Celana
-    second: {fileID: 2100000, guid: 56b2a4aa80a27334aa66bebfcff6c248, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Jaket
-    second: {fileID: 2100000, guid: d5842d066293f6a4faff631ab83dde14, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Kulit Kepala
-    second: {fileID: 2100000, guid: e57e3bad0ea28764f8d22b00d9c1382e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mata
-    second: {fileID: 2100000, guid: 0a4f3503e9b53994aad12b627b63bcc5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Rambut.001
-    second: {fileID: 2100000, guid: 685e960a095853d46b5e01cd3c0df8df, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Sepatu.001
-    second: {fileID: 2100000, guid: 725a7909adf50294cb35f836535fc131, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

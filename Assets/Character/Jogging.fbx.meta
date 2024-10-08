@@ -1,49 +1,9 @@
 fileFormatVersion: 2
-guid: a13f190cb96384445baa1fac0cb4d83e
+guid: fc165b38558c8a241b2acd6fe032506f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bake Alis
-    second: {fileID: 2800000, guid: 2e691a7156bf4e54bab89a28ff81bb75, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bake Badan
-    second: {fileID: 2800000, guid: c04c9e861ba841047a352cd3ada41aaa, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bake Celana
-    second: {fileID: 2800000, guid: ed9cba789b9abe446a1ad72a956ad1e7, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bake Jaket
-    second: {fileID: 2800000, guid: 08270e2ea5d5daa449056f278b2d7c65, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bake Kulit Kepala
-    second: {fileID: 2800000, guid: a76593ff32e86eb47b0b15808ed3b1a0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bake Mata
-    second: {fileID: 2800000, guid: 578a1dc46c77d3246b97c69699fe0202, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bake Rambut
-    second: {fileID: 2800000, guid: 8362801219568014fa38fcc902065142, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bake Sepatu
-    second: {fileID: 2800000, guid: 37d3b3af914db084fb570266b56989a6, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
