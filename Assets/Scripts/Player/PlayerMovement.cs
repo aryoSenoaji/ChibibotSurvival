@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    [Header("-----> Pergerakan Player <-----")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float sprintSpeed = 8f; // Kecepatan saat sprint
     [SerializeField] float rotationSpeed = 700f;
