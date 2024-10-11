@@ -5,78 +5,32 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Animator playerAnim;
-    public Rigidbody playerRigid;
-    public float w_speed, wb_speed, olw_speed, rn_speed, ro_speed;
-    public bool walking;
-    public Transform playerTrans;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float rotationSpeed = 700f;
 
+    Quaternion targetRotation;
 
-    void FixedUpdate()
+    private void Awake()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            playerRigid.velocity = transform.forward * w_speed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            playerRigid.velocity = -transform.forward * wb_speed * Time.deltaTime;
-        }
+        
     }
-    void Update()
+
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        float moveAmount = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
+
+        var moveInput = (new Vector3(horizontal, 0, vertical)).normalized;
+
+        if (moveAmount > 0)
         {
-            playerAnim.SetTrigger("walk");
-            playerAnim.ResetTrigger("idle");
-            walking = true;
-            //steps1.SetActive(true);
+            transform.position += moveInput * moveSpeed * Time.deltaTime;
+            targetRotation = Quaternion.LookRotation(moveInput);
         }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            playerAnim.ResetTrigger("walk");
-            playerAnim.SetTrigger("idle");
-            walking = false;
-            //steps1.SetActive(false);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            playerAnim.SetTrigger("walkback");
-            playerAnim.ResetTrigger("idle");
-            //steps1.SetActive(true);
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            playerAnim.ResetTrigger("walkback");
-            playerAnim.SetTrigger("idle");
-            //steps1.SetActive(false);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            playerTrans.Rotate(0, -ro_speed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            playerTrans.Rotate(0, ro_speed * Time.deltaTime, 0);
-        }
-        if (walking == true)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                //steps1.SetActive(false);
-                //steps2.SetActive(true);
-                w_speed = w_speed + rn_speed;
-                playerAnim.SetTrigger("run");
-                playerAnim.ResetTrigger("walk");
-            }
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                //steps1.SetActive(true);
-                //steps2.SetActive(false);
-                w_speed = olw_speed;
-                playerAnim.ResetTrigger("run");
-                playerAnim.SetTrigger("walk");
-            }
-        }
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 
+            rotationSpeed * Time.deltaTime);
     }
 }
