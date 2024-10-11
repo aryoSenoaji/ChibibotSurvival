@@ -5283,8 +5283,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7da0d706024b0114d84a44c09beabd65, type: 3}
       propertyPath: m_Name
-      value: T-Pose
+      value: Ijul
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7da0d706024b0114d84a44c09beabd65, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4f7b01897f6e02147b95cfecc221af0a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5837,6 +5841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  rotationSpeed: 500
 --- !u!1001 &818339790
 PrefabInstance:
   m_ObjectHideFlags: 0
