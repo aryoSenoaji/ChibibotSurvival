@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 700f;
 
     [SerializeField] Animator animator;
+    [SerializeField] CharacterController characterController;
 
     Quaternion targetRotation;
 
@@ -27,8 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveAmount > 0)
         {
-            // Karakter bergerak dengan kecepatan yang sesuai (sprint atau tidak)
-            transform.position += moveInput * currentSpeed * Time.deltaTime;
+            characterController.Move(moveInput * currentSpeed * Time.deltaTime);
             targetRotation = Quaternion.LookRotation(moveInput);
         }
 
