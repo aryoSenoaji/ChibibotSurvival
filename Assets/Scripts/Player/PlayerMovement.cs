@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Animator animator;
     [SerializeField] CharacterController characterController;
+    [SerializeField] Transform cameraTransform; // Tambahkan referensi untuk kamera
 
     Quaternion targetRotation;
 
@@ -23,7 +24,13 @@ public class PlayerMovement : MonoBehaviour
         // Cek apakah tombol shift ditekan untuk sprint
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
 
-        var moveInput = (new Vector3(horizontal, 0, vertical)).normalized;
+        // Ambil orientasi kamera untuk pergerakan relatif kamera
+        Vector3 cameraForward = cameraTransform.forward;
+        cameraForward.y = 0; // Mengabaikan pergerakan vertikal
+        Vector3 cameraRight = cameraTransform.right;
+
+        Vector3 moveInput = (cameraRight * horizontal + cameraForward * vertical).normalized;
+
         float moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
 
         if (moveAmount > 0)
