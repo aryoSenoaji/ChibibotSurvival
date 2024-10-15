@@ -9,15 +9,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float sprintSpeed = 8f; // Kecepatan saat sprint
     [SerializeField] float rotationSpeed = 700f;
+    [SerializeField] float jumpHeight = 2f; // Tinggi lompatan
+    [SerializeField] float gravity = -9.81f; // Nilai gravitasi
 
     [SerializeField] Animator animator;
     [SerializeField] CharacterController characterController;
-    [SerializeField] Transform cameraTransform; // Tambahkan referensi untuk kamera
+    [SerializeField] Transform cameraTransform; // Referensi kamera
 
+    Vector3 velocity; // Untuk gravitasi dan lompatan
+    bool isGrounded; // Cek apakah karakter di tanah
     Quaternion targetRotation;
 
     private void Update()
     {
+        // Cek apakah karakter berada di tanah
+        isGrounded = characterController.isGrounded;
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f; // Reset nilai gravitasi saat di tanah
+        }
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -45,5 +56,15 @@ public class PlayerMovement : MonoBehaviour
 
         // Update nilai moveAmount pada animator, sesuaikan dengan currentSpeed
         animator.SetFloat("moveAmount", moveAmount * (currentSpeed / moveSpeed), 0.1f, Time.deltaTime);
+
+        // Lompatan
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); // Hitung kecepatan lompatan
+        }
+
+        // Terapkan gravitasi
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime); // Gerakkan karakter berdasarkan gravitasi
     }
 }

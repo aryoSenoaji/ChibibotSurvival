@@ -5974,7 +5974,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   sprintSpeed: 8
-  rotationSpeed: 700
+  rotationSpeed: 200
+  jumpHeight: 2
+  gravity: -9.81
   animator: {fileID: 1016133736}
   characterController: {fileID: 815249294}
   cameraTransform: {fileID: 963194228}
