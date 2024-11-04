@@ -7,27 +7,30 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("-----> Pergerakan Player <-----")]
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float sprintSpeed = 8f; // Kecepatan saat sprint
+    [SerializeField] float sprintSpeed = 8f;
     [SerializeField] float rotationSpeed = 700f;
-    [SerializeField] float jumpHeight = 2f; // Tinggi lompatan
-    [SerializeField] float gravity = -9.81f; // Nilai gravitasi
-
+    [SerializeField] float jumpHeight = 5f;
     [SerializeField] Animator animator;
-    [SerializeField] CharacterController characterController;
-    [SerializeField] Transform cameraTransform; // Referensi kamera
+    [SerializeField] Transform cameraTransform;
 
-    Vector3 velocity; // Untuk gravitasi dan lompatan
-    bool isGrounded; // Cek apakah karakter di tanah
-    Quaternion targetRotation;
+    [SerializeField] Rigidbody rb;
+    private bool isGrounded;
+    private Quaternion targetRotation;
+    private Vector3 moveInput;
+
+    private void Awake()
+    {
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+        rb.freezeRotation = true;
+    }
 
     private void Update()
     {
         // Cek apakah karakter berada di tanah
-        isGrounded = characterController.isGrounded;
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f; // Reset nilai gravitasi saat di tanah
-        }
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -37,34 +40,35 @@ public class PlayerMovement : MonoBehaviour
 
         // Ambil orientasi kamera untuk pergerakan relatif kamera
         Vector3 cameraForward = cameraTransform.forward;
-        cameraForward.y = 0; // Mengabaikan pergerakan vertikal
+        cameraForward.y = 0;
         Vector3 cameraRight = cameraTransform.right;
 
-        Vector3 moveInput = (cameraRight * horizontal + cameraForward * vertical).normalized;
+        // Tentukan nilai moveInput di sini agar bisa diakses di FixedUpdate
+        moveInput = (cameraRight * horizontal + cameraForward * vertical).normalized * currentSpeed;
 
         float moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+        animator.SetFloat("moveAmount", moveAmount * (currentSpeed / moveSpeed), 0.1f, Time.deltaTime);
 
+        // Tentukan target rotasi jika karakter bergerak
         if (moveAmount > 0)
         {
-            characterController.Move(moveInput * currentSpeed * Time.deltaTime);
             targetRotation = Quaternion.LookRotation(moveInput);
         }
-
-        // Rotasi karakter
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation,
-            rotationSpeed * Time.deltaTime);
-
-        // Update nilai moveAmount pada animator, sesuaikan dengan currentSpeed
-        animator.SetFloat("moveAmount", moveAmount * (currentSpeed / moveSpeed), 0.1f, Time.deltaTime);
 
         // Lompatan
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); // Hitung kecepatan lompatan
+            rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
+    }
 
-        // Terapkan gravitasi
-        velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime); // Gerakkan karakter berdasarkan gravitasi
+    private void FixedUpdate()
+    {
+        // Pergerakan karakter menggunakan Rigidbody.MovePosition
+        Vector3 targetPosition = rb.position + moveInput * Time.fixedDeltaTime;
+        rb.MovePosition(targetPosition);
+
+        // Rotasi karakter menggunakan Rigidbody.MoveRotation
+        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
     }
 }

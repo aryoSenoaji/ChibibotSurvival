@@ -6246,7 +6246,8 @@ GameObject:
   m_Component:
   - component: {fileID: 815249293}
   - component: {fileID: 815249295}
-  - component: {fileID: 815249294}
+  - component: {fileID: 815249296}
+  - component: {fileID: 815249297}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6270,8 +6271,54 @@ Transform:
   - {fileID: 713479171}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &815249294
-CharacterController:
+--- !u!114 &815249295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815249292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d7f7fccad95c24ba3c9cef611e1b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  sprintSpeed: 8
+  rotationSpeed: 800
+  jumpHeight: 2
+  animator: {fileID: 1016133736}
+  cameraTransform: {fileID: 963194228}
+  rb: {fileID: 815249296}
+--- !u!54 &815249296
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815249292}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &815249297
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6288,34 +6335,11 @@ CharacterController:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &815249295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815249292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91d7f7fccad95c24ba3c9cef611e1b4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  sprintSpeed: 8
-  rotationSpeed: 800
-  jumpHeight: 2
-  gravity: -9.81
-  animator: {fileID: 1016133736}
-  characterController: {fileID: 815249294}
-  cameraTransform: {fileID: 963194228}
+  serializedVersion: 2
+  m_Radius: 0.38
+  m_Height: 2.4775486
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.07674503, z: 0}
 --- !u!1001 &818339790
 PrefabInstance:
   m_ObjectHideFlags: 0
